@@ -13,7 +13,7 @@
   </script>
   
   <div class="container mt-5">
-    <h2 class="mb-4">Attendees</h2>
+    <h2 class="mb-4">Guest List</h2>
     <table class="table table-striped">
         <thead>
           <tr>
@@ -33,7 +33,7 @@
         </tbody>
       </table>
   
-    <h2 class="mb-4">Non-Attendees</h2>
+    <h2 class="mb-4">Can't Make It</h2>
     <ul class="list-group">
       {#each nonAttendees as nonAttendee}
         <li class="list-group-item">{nonAttendee.name}</li>
