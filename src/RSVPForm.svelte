@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	let name = '';
-	let attending = false;
+	let attending = true;
 	let message = '';
 	let guests = 0;
     let restrictions = '';
@@ -27,11 +27,11 @@
 	}
 </script>
 <style>
-	@import url('https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap');
-	* {
-		font-family: 'Spicy Rice', cursive;
-	}
-</style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Oxygen&display=swap');
+      * {
+          font-family: 'Oxygen', cursive;
+      }
+  </style>
   <main>
 	
   <div class="container mt-5">
@@ -85,7 +85,13 @@
 				<label class="form-check-label" for="attending">Attending</label>
 			  </div>
 			  <div class="d-grid gap-2">
-				<button type="submit" class="btn btn-success">Send your RSVP</button>
+				<button type="submit" class="btn btn-{attending ? 'success' : 'danger'} ">
+                    {#if attending}
+                        Send your RSVP
+                    {:else}
+                        Gracefully Decline
+                    {/if}
+                        </button>
 			  </div>
 			</form>
 			{#if message}

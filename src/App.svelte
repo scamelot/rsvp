@@ -5,9 +5,9 @@
 </script>
   
 <style>
-	@import url('https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Oxygen&display=swap');
 	* {
-		font-family: 'Spicy Rice', cursive;
+		font-family: 'Oxygen', cursive;
 	}
 </style>
   
