@@ -75,7 +75,7 @@
 				  required
 				/>
 			  </div>
-			  <div class="mb-3 form-check form-switch-xl">
+			  <div class="mb-3 form-check form-switch form-switch-xl">
 				<input
 				  type="checkbox"
 				  class="form-check-input"
