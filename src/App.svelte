@@ -5,7 +5,7 @@
 	let message = '';
   
 	async function handleSubmit() {
-		const response = await fetch(`http://localhost:8080/api/rsvp`, {
+		const response = await fetch(`/api/rsvp`, {
 			method: 'POST',
 			headers: {
 			'Content-Type': 'application/json',
@@ -20,7 +20,7 @@
 			message = `Thanks for your RSVP, ${name}. You'll be missed!`
 		}
 	  } else {
-		message = 'Something went wrong. Please try again later';
+		message = 'Something went wrong. Please try again later.';
 	  }
 	}
 </script>
