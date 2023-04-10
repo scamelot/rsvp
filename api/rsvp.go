@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/joho/godotenv"
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -49,20 +50,32 @@ func connectDB() (*mongo.Client, context.Context, context.CancelFunc) {
 	return client, ctx, cancel
 }
 
-func Handler(w http.ResponseWriter, r *http.Request) {
-	client, ctx, cancel := connectDB()
+func handleGetAllRSVPs(w http.ResponseWriter, r *http.Request, rsvpCollection *mongo.Collection) {
+	ctx, cancel := context.WithTimeout(r.Context(), 10*time.Second)
 	defer cancel()
-	defer func() {
-		if err := client.Disconnect(ctx); err != nil {
-			log.Fatal(err)
-		}
-	}()
 
-	rsvpCollection := client.Database("rsvp").Collection("responses")
+	cursor, err := rsvpCollection.Find(ctx, bson.M{})
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	defer cursor.Close(ctx)
+
+	var rsvps []RSVP
+	if err = cursor.All(ctx, &rsvps); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(rsvps)
+}
+
+func handlePostRSVP(w http.ResponseWriter, r *http.Request, rsvpCollection *mongo.Collection) {
 
 	var rsvp RSVP
 
-	ctx, cancel = context.WithTimeout(r.Context(), 10*time.Second)
+	ctx, cancel := context.WithTimeout(r.Context(), 10*time.Second)
 	defer cancel()
 
 	err := json.NewDecoder(r.Body).Decode(&rsvp)
@@ -85,4 +98,25 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(response)
+}
+
+func Handler(w http.ResponseWriter, r *http.Request) {
+	client, ctx, cancel := connectDB()
+	defer cancel()
+	defer func() {
+		if err := client.Disconnect(ctx); err != nil {
+			log.Fatal(err)
+		}
+	}()
+
+	rsvpCollection := client.Database("rsvp").Collection("responses")
+
+	switch r.Method {
+	case "GET":
+		handleGetAllRSVPs(w, r, rsvpCollection)
+	case "POST":
+		handlePostRSVP(w, r, rsvpCollection)
+	default:
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+	}
 }
