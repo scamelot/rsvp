@@ -5,9 +5,8 @@ import terser from '@rollup/plugin-terser';
 import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import css from 'rollup-plugin-css-only';
+import scss from "rollup-plugin-scss";
 // Add this import at the top of the file
-import alias from '@rollup/plugin-alias';
-import replace from '@rollup/plugin-replace';
 import copy from 'rollup-plugin-copy'
 
 
@@ -55,12 +54,13 @@ export default {
 		svelte({
 			compilerOptions: {
 				// enable run-time checks when not in production
-				dev: !production
+				dev: !production,
 			},
 		}),
 		// we'll extract any component CSS out into
 		// a separate file - better for performance
 		css({ output: 'bundle.css' }),
+		scss(),
 
 		// If you have external dependencies installed from
 		// npm, you'll most likely need these plugins. In
@@ -80,7 +80,7 @@ export default {
 
 		// Watch the `public` directory and refresh the
 		// browser on changes when not in production
-		!production && livereload('public'),
+		// !production && livereload('public'),
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify

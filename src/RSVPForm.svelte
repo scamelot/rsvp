@@ -26,7 +26,12 @@
 	  }
 	}
 </script>
-
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap');
+	* {
+		font-family: 'Spicy Rice', cursive;
+	}
+</style>
   <main>
 	
   <div class="container mt-5">
@@ -80,7 +85,7 @@
 				<label class="form-check-label" for="attending">Attending</label>
 			  </div>
 			  <div class="d-grid gap-2">
-				<button type="submit" class="btn btn-primary">Submit</button>
+				<button type="submit" class="btn btn-success">Send your RSVP</button>
 			  </div>
 			</form>
 			{#if message}

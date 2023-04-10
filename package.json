@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-scss": "^4.0.0",
     "svelte-routing": "^1.6.0"
   }
 }

@@ -2,11 +2,14 @@
 	import { Router, Link, Route } from 'svelte-routing';
 	import RSVPForm from './RSVPForm.svelte';
 	import Attendees from './Attendees.svelte';
-  </script>
+</script>
   
-  <style>
-	/* ... (same as before) */
-  </style>
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap');
+	* {
+		font-family: 'Spicy Rice', cursive;
+	}
+</style>
   
   <Router>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
