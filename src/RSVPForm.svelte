@@ -34,7 +34,8 @@
 	  <div class="col-md-8 offset-md-2">
 		<div class="card">
 		  <div class="card-body">
-			<h2 class="card-title text-center mb-4">RSVP</h2>
+			<h2 class="card-title text-center mb-4">Steve and Rachel's Engagement Party</h2>
+            <h3 class="card-title text-center mb-4">July 30, 2023 at Noon</h3>
 			<form on:submit|preventDefault={handleSubmit}>
 			  <div class="mb-3">
 				<label for="name" class="form-label">Name</label>
