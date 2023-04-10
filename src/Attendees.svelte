@@ -16,7 +16,7 @@
     <h2 class="mb-4">Attendees</h2>
     <ul class="list-group mb-5">
       {#each attendees as attendee}
-        <li class="list-group-item">{attendee.name} : {attendee.guests}</li>
+        <li class="list-group-item">{attendee.name} : {attendee.guests} : {attendee.restrictions}</li>
       {/each}
     </ul>
   
