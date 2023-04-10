@@ -3,6 +3,7 @@
 	let name = '';
 	let attending = false;
 	let message = '';
+	let guests = 0;
   
 	async function handleSubmit() {
 		const response = await fetch(`/api/rsvp`, {
@@ -10,7 +11,7 @@
 			headers: {
 			'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({ name, attending }),
+			body: JSON.stringify({ name, attending, guests }),
 		});
   
 	  if (response.ok) {
@@ -41,6 +42,17 @@
 				  class="form-control"
 				  id="name"
 				  bind:value={name}
+				  on:input={() => { message = ""; }}
+				  required
+				/>
+			  </div>
+			  <div class="mb-3">
+				<label for="guests" class="form-label"># of Guests</label>
+				<input
+				  type="number"
+				  class="form-control"
+				  id="guests"
+				  bind:value={guests}
 				  on:input={() => { message = ""; }}
 				  required
 				/>
