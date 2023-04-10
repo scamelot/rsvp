@@ -17,9 +17,10 @@ import (
 )
 
 type RSVP struct {
-	Name      string `json:"name"`
-	Attending bool   `json:"attending"`
-	Guests    uint   `json:"guests"`
+	Name         string `json:"name"`
+	Attending    bool   `json:"attending"`
+	Guests       uint   `json:"guests"`
+	Restrictions string `json:"restrictions"`
 }
 
 func init() {
