@@ -14,11 +14,24 @@
   
   <div class="container mt-5">
     <h2 class="mb-4">Attendees</h2>
-    <ul class="list-group mb-5">
-      {#each attendees as attendee}
-        <li class="list-group-item">{attendee.name} : {attendee.guests} : {attendee.restrictions}</li>
-      {/each}
-    </ul>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Number of Guests</th>
+            <th>Restrictions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {#each attendees as attendee}
+            <tr>
+              <td>{attendee.name}</td>
+              <td>{attendee.guests}</td>
+              <td>{attendee.restrictions}</td>
+            </tr>
+          {/each}
+        </tbody>
+      </table>
   
     <h2 class="mb-4">Non-Attendees</h2>
     <ul class="list-group">
