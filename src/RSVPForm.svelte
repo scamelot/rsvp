@@ -28,6 +28,15 @@
 	}
 </script>
 <style>
+	.image {
+	display: block; /* Set display property to block or inline-block to ensure visibility on non-mobile devices */
+	}
+
+	@media (max-width: 767px) { /* Adjust the max-width value as needed for your desired mobile screen size */
+	.image {
+		display: none; /* Hide the image on mobile devices */
+	}
+	}
     @font-face {
 		font-family: 'Bodoni Cyrillic';
 		font-style: normal;
@@ -48,20 +57,20 @@
 		  color: #466f21;
 		  font-size: 1.5rem;
 		  opacity: 0.9;
-		  width: 100%;
-		  height: 100vh;
+		  width: 101%;
+		  height: 120vh;
 	  }
 	  .background {
 		position: fixed;
 		top: 0;
 		right: 0;
-		width: 60%; /* Adjust the width as needed */
+		width: 50%; /* Adjust the width as needed */
 		height: 50%; /* Adjust the height as needed */
 		z-index: -1; /* To move the SVG behind other elements */
 	  } 
   </style>
   <div class="background">
-	<img src="flowers.png" />
+	<img src="flowers.png" class="image" />
   </div>	
   <main>
   <div class="container">
