@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
+	// import Background from '../public/flowers.svg';
 	let name = '';
 	let attending = true;
 	let message = '';
@@ -27,20 +28,48 @@
 	}
 </script>
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Oxygen&display=swap');
-      * {
-          font-family: 'Oxygen', cursive;
+    @font-face {
+		font-family: 'Bodoni Cyrillic';
+		font-style: normal;
+		font-weight: normal;
+		src: local('Bodoni Cyrillic'), url('/BodoniCyrillic.ttf') format('truetype');
+	}
+		* {
+          font-family: 'Bodoni Cyrillic', serif;
       }
+	@font-face {
+		font-family: "TAN-PEARL";
+		font-style: normal;
+		font-weight: normal;
+		src: local('TAN-PEARL'), url('/TAN-PEARL.ttf') format('truetype');
+	}
+	  main {
+		  background-color: #fdfefe;
+		  color: #466f21;
+		  font-size: 1.5rem;
+		  opacity: 0.9;
+		  width: 100vw;
+		  height: 150vh;
+	  }
+	  .background {
+		position: fixed;
+		top: 0;
+		right: 0;
+		width: 60%; /* Adjust the width as needed */
+		height: 50%; /* Adjust the height as needed */
+		z-index: -1; /* To move the SVG behind other elements */
+	  } 
   </style>
+  <div class="background">
+	<img src="flowers.png" />
+  </div>	
   <main>
-	
-  <div class="container mt-5">
+  <div class="container">
 	<div class="row">
 	  <div class="col-md-8 offset-md-2">
-		<div class="card">
+		<div class="d-flex justify-content-center"><img src="/engagementinvite.png" alt="Steve and Rachel's Engagement Party" width="125%" height="auto" />
+		</div>
 		  <div class="card-body">
-			<h2 class="card-title text-center mb-4">Steve and Rachel's Engagement Party</h2>
-            <h3 class="card-title text-center mb-4">July 30, 2023 at Noon</h3>
 			<form on:submit|preventDefault={handleSubmit}>
 			  <div class="mb-3">
 				<label for="name" class="form-label">Name</label>
@@ -99,7 +128,7 @@
 				{message}
 			  </div>
 			{/if}
-		  </div>
+
 		</div>
 	  </div>
 	</div>
