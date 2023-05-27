@@ -48,8 +48,8 @@
 		  color: #466f21;
 		  font-size: 1.5rem;
 		  opacity: 0.9;
-		  width: 100vw;
-		  height: 150vh;
+		  width: 100%;
+		  height: 100vh;
 	  }
 	  .background {
 		position: fixed;
