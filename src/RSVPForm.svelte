@@ -110,7 +110,6 @@
 				  id="restrictions"
 				  bind:value={restrictions}
 				  on:input={() => { message = ""; }}
-				  required
 				/>
 			  </div>
 			  <div class="mb-3 form-check form-switch form-switch-xl">
