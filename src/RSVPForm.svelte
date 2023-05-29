@@ -106,7 +106,7 @@
 	  } 
   </style>
   <div class="background">
-	<img src="flowers.png" class="image" />
+	<img src="flowers.png" class="image" alt="sunflowers" />
   </div>	
   <main>
   <div class="container">
