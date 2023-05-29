@@ -1,11 +1,13 @@
 <script>
 	import { onMount } from 'svelte';
+	import { createEventDispatcher } from 'svelte';
 	// import Background from '../public/flowers.svg';
 	let name = '';
 	let attending = true;
 	let message = '';
 	let guests = 0;
     let restrictions = '';
+	
   
 	async function handleSubmit() {
 		const response = await fetch(`/api/rsvp`, {
@@ -25,9 +27,43 @@
 	  } else {
 		message = 'Something went wrong. Please try again later.';
 	  }
+	  openModal();
 	}
+
+  let showModal = false;
+  const dispatch = createEventDispatcher();
+
+  function openModal() {
+    showModal = true;
+  }
+
+  function closeModal() {
+	message = '';
+    showModal = false;
+  }
+
 </script>
 <style>
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 4px;
+    width: 400px;
+    max-width: 90%;
+  }
 	.image {
 	display: block; /* Set display property to block or inline-block to ensure visibility on non-mobile devices */
 	}
@@ -133,7 +169,12 @@
 			</form>
 			{#if message}
 			  <div class="alert alert-{message.includes('Thanks') ? 'success' : 'danger'} mt-3" role="alert">
-				{message}
+				<div class="modal">
+					<div class="modal-content">
+					  <p>{message}</p>
+					  <button on:click={closeModal}>Close</button>
+					</div>
+				  </div>
 			  </div>
 			{/if}
 
